@@ -278,6 +278,8 @@
         return str;
     }
 
+    // 数据版本号，每次修改 rawData 后请将数字加 1
+    const DATA_VERSION = 2;
     // 原始数据（从Excel逐行录入，包含所有字段）
     const rawData = [
         { name:"毛昱烨", stage:"正式党员", applyDate:44814, talkDate:44832, activeDate:44864, cultivator:"姚春萌、陈淑婷", developDate:45253, attachment2:"暂无", attachment3:"暂无", attachment6:"暂无", attachment10:"暂无", preReviewDate:"暂无", introducer:"田洪冰、钱雨晨", prePartyDate:45284, approvePartyDate:45299, transferDate:45670 },
@@ -289,18 +291,18 @@
         { name:"林裕翔", stage:"正式党员", applyDate:45189, talkDate:45219, activeDate:45223, cultivator:"余嘉杭、徐腾", developDate:45642, attachment2:45614, attachment3:45621, attachment6:"培养联系人意见：2024年11月11日<br>支委会讨论时间：2024年11月29日<br>基层党委备案意见：2024年12月16日", attachment10:45649, preReviewDate:45650, introducer:"谢俸俸、邓妙妙", prePartyDate:45655, approvePartyDate:45670, transferDate:46034 },
         { name:"鲍善美", stage:"预备党员", applyDate:45170, talkDate:45170, activeDate:45221, cultivator:"许晖、罗元汝", developDate:45642, attachment2:45791, attachment3:45792, attachment6:"培养联系人意见：2025年4月30日<br>支委会讨论时间：2025年5月15日<br>基层党委备案意见：2025年5月22日", attachment10:45815, preReviewDate:45816, introducer:"陈俊杰、宋煜哲", prePartyDate:45823, approvePartyDate:45835, transferDate:"" },
         { name:"张佳蕴", stage:"预备党员", applyDate:45175, talkDate:45191, activeDate:45400, cultivator:"宋煜哲、陈俊杰", developDate:45799, attachment2:45791, attachment3:45792, attachment6:"培养联系人意见：2025年4月30日<br>支委会讨论时间：2025年5月15日<br>基层党委备案意见：2025年5月22日", attachment10:45815, preReviewDate:45816, introducer:"陈俊杰、毛昱烨", prePartyDate:45823, approvePartyDate:45835, transferDate:"" },
-        { name:"王欣鑫", stage:"预备党员", applyDate:44814, talkDate:45194, activeDate:45221, cultivator:"刘超红、杨琬琳", developDate:45799, attachment2:45791, attachment3:45792, attachment6:"培养联系人意见：2025年4月30日<br>支委会讨论时间：2025年5月15日<br>基层党委备案意见：2025年5月22日", attachment10:45815, preReviewDate:45816, introducer:"陈俊杰、毛昱烨", prePartyDate:45823, approvePartyDate:45835, transferDate:"" },
+        { name:"王欣鑫", stage:"预备党员", applyDate:44814, talkDate:44838, activeDate:45221, cultivator:"刘超红、杨琬琳", developDate:45799, attachment2:45791, attachment3:45792, attachment6:"培养联系人意见：2025年4月30日<br>支委会讨论时间：2025年5月15日<br>基层党委备案意见：2025年5月22日", attachment10:45815, preReviewDate:45816, introducer:"陈俊杰、毛昱烨", prePartyDate:45823, approvePartyDate:45835, transferDate:"" },
         { name:"杜昭怡", stage:"预备党员", applyDate:45193, talkDate:45208, activeDate:45392, cultivator:"王幸虹、杨婧一", developDate:45799, attachment2:45791, attachment3:45792, attachment6:"培养联系人意见：2025年4月30日<br>支委会讨论时间：2025年5月15日<br>基层党委备案意见：2025年5月22日", attachment10:45815, preReviewDate:45816, introducer:"毛昱烨、宋煜哲", prePartyDate:45823, approvePartyDate:45835, transferDate:"" },
         { name:"石丽媛", stage:"预备党员", applyDate:44881, talkDate:44910, activeDate:45221, cultivator:"罗芮、章梦琳", developDate:45799, attachment2:45791, attachment3:45792, attachment6:"培养联系人意见：2025年4月30日<br>支委会讨论时间：2025年5月15日<br>基层党委备案意见：2025年5月22日", attachment10:45815, preReviewDate:46008, introducer:"毛昱烨、符式珠", prePartyDate:46008, approvePartyDate:46017, transferDate:"" },
         { name:"杨静雯", stage:"预备党员", applyDate:45539, talkDate:45561, activeDate:45607, cultivator:"李昌禄、王光熙", developDate:45986, attachment2:"205年11月13日", attachment3:"205年11月14日", attachment6:"培养联系人意见：2025年11月12日<br>支委会讨论时间：2025年11月19日<br>基层党委备案意见：2025年11月25日", attachment10:46001, preReviewDate:46008, introducer:"毛昱烨、符式珠", prePartyDate:46008, approvePartyDate:46017, transferDate:"" },
         { name:"周娴红", stage:"预备党员", applyDate:45369, talkDate:45377, activeDate:45607, cultivator:"杜涵月、苏丽娜", developDate:45986, attachment2:"205年11月13日", attachment3:"205年11月14日", attachment6:"培养联系人意见：2025年11月12日<br>支委会讨论时间：2025年11月19日<br>基层党委备案意见：2025年11月25日", attachment10:46001, preReviewDate:46008, introducer:"毛昱烨、符式珠", prePartyDate:46008, approvePartyDate:46017, transferDate:"" },
         { name:"卢思澄", stage:"预备党员", applyDate:45538, talkDate:45199, activeDate:45590, cultivator:"宋煜哲、陈俊杰", developDate:45986, attachment2:"205年11月13日", attachment3:"205年11月14日", attachment6:"培养联系人意见：2025年11月12日<br>支委会讨论时间：2025年11月19日<br>基层党委备案意见：2025年11月25日", attachment10:46001, preReviewDate:46008, introducer:"毛昱烨、符式珠", prePartyDate:46008, approvePartyDate:46017, transferDate:"" },
+        { name:"吴雅薇", stage:"积极分子", applyDate:44890, talkDate:44913, activeDate:45221, cultivator:"周孟杰、潘滟滟", developDate:45799, attachment2:45791, attachment3:45792, attachment6:"培养联系人意见：2025年4月30日<br>支委会讨论时间：2025年5月15日<br>基层党委备案意见：2025年5月22日", attachment10:45815, preReviewDate:"暂无", introducer:"暂无", prePartyDate:"", approvePartyDate:"", transferDate:"" },
         { name:"冯文硕", stage:"预备党员", applyDate:45181, talkDate:45193, activeDate:45400, cultivator:"宋煜哲、陈俊杰", developDate:45799, attachment2:45791, attachment3:45792, attachment6:"培养联系人意见：2025年4月30日<br>支委会讨论时间：2025年5月15日<br>基层党委备案意见：2025年5月22日", attachment10:45815, preReviewDate:"暂无", introducer:"暂无", prePartyDate:"", approvePartyDate:"", transferDate:"" },
         { name:"刘翔", stage:"预备党员", applyDate:45193, talkDate:45208, activeDate:45392, cultivator:"郭嘉伊、杨佳意", developDate:"", attachment2:"", attachment3:"", attachment6:"", attachment10:"", preReviewDate:"", introducer:"", prePartyDate:"", approvePartyDate:"", transferDate:"" },
         { name:"李子涵", stage:"预备党员", applyDate:45563, talkDate:45576, activeDate:45750, cultivator:"刘扬、郭斯宇", developDate:"", attachment2:"", attachment3:"", attachment6:"", attachment10:"", preReviewDate:"", introducer:"", prePartyDate:"", approvePartyDate:"", transferDate:"" },
         { name:"梁正妍", stage:"预备党员", applyDate:45539, talkDate:45560, activeDate:45762, cultivator:"蔡慧丹、陈青莹", developDate:"", attachment2:"", attachment3:"", attachment6:"", attachment10:"", preReviewDate:"", introducer:"", prePartyDate:"", approvePartyDate:"", transferDate:"" },
         { name:"庄家秀", stage:"预备党员", applyDate:45542, talkDate:45565, activeDate:45765, cultivator:"韩家雪、刘嘉铭", developDate:"", attachment2:"", attachment3:"", attachment6:"", attachment10:"", preReviewDate:"", introducer:"", prePartyDate:"", approvePartyDate:"", transferDate:"" },
-        { name:"吴雅薇", stage:"积极分子", applyDate:44890, talkDate:44913, activeDate:45221, cultivator:"周孟杰、潘滟滟", developDate:45799, attachment2:45791, attachment3:45792, attachment6:"培养联系人意见：2025年4月30日<br>支委会讨论时间：2025年5月15日<br>基层党委备案意见：2025年5月22日", attachment10:45815, preReviewDate:"暂无", introducer:"暂无", prePartyDate:"", approvePartyDate:"", transferDate:"" },
         { name:"李诗桐", stage:"积极分子", applyDate:45905, talkDate:45561, activeDate:45955, cultivator:"毛昱烨、符式珠", developDate:"", attachment2:"", attachment3:"", attachment6:"", attachment10:"", preReviewDate:"", introducer:"", prePartyDate:"", approvePartyDate:"", transferDate:"" },
         { name:"陈绵秀", stage:"积极分子", applyDate:45716, talkDate:45749, activeDate:45955, cultivator:"毛昱烨、符式珠", developDate:"", attachment2:"", attachment3:"", attachment6:"", attachment10:"", preReviewDate:"", introducer:"", prePartyDate:"", approvePartyDate:"", transferDate:"" },
         { name:"洪莹晶", stage:"积极分子", applyDate:45905, talkDate:45926, activeDate:45955, cultivator:"毛昱烨、符式珠", developDate:"", attachment2:"", attachment3:"", attachment6:"", attachment10:"", preReviewDate:"", introducer:"", prePartyDate:"", approvePartyDate:"", transferDate:"" },
@@ -346,17 +348,22 @@
     const STORAGE_KEY = 'party_members_full';
 
     function loadMembersFromStorage() {
-        const stored = localStorage.getItem(STORAGE_KEY);
-        if (stored) {
-            members = JSON.parse(stored);
-        } else {
+        const storedVersion = localStorage.getItem(STORAGE_KEY + '_version');
+        const storedData = localStorage.getItem(STORAGE_KEY);
+    
+    // 如果版本号不匹配或没有数据，就用新的 rawData 覆盖
+        if (storedVersion != DATA_VERSION || !storedData) {
             members = rawData.map((m, idx) => normalizeMember({ ...m, id: idx.toString() }));
             saveMembers();
+         localStorage.setItem(STORAGE_KEY + '_version', DATA_VERSION);
+        } else {
+            members = JSON.parse(storedData);
         }
     }
 
     function saveMembers() {
         localStorage.setItem(STORAGE_KEY, JSON.stringify(members));
+        localStorage.setItem(STORAGE_KEY + '_version', DATA_VERSION);
     }
 
     function findMemberByNameAndStage(name, stage) {
@@ -626,5 +633,7 @@
     loadMembersFromStorage();
     showUserMode();
 </script>
+</body>
+</html>
 </body>
 </html>
